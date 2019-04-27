@@ -1,0 +1,46 @@
+<h1>広告入稿画面</h1>
+<div id="input-page">
+  <%= form_for @ad, url: ad_create_path do |f| %>
+    <div class="field">
+      <%= f.text_area :name, placeholder: "広告名" %>
+    </div>
+
+    <div class="picture" onClick="$('#img').click()" >
+      <div class="discription">
+        <p>広告を選択してください</p>
+        <p>300 × 250</p>
+      </div>
+    </div>
+    <div class="input-picture">
+      <%= f.file_field :picture, id: "img" %>
+    </div>
+    <%= f.submit "入稿", class: "btn btn-primary" %>
+
+  <% end %>
+
+
+
+  <script type="text/javascript">
+    $(function(){
+      $fileField = $('#img')
+      $($fileField).on('change', $fileField, function(e){
+        file = e.target.files[0]
+        reader = new FileReader(),
+        $preview = $(".picture");
+        reader.onload = (function(file) {
+          return function(e) {
+            $preview.empty();
+            $preview.append($('<img>').attr({
+              src: e.target.result,
+              width: 300,
+              height: 250
+            }));
+          };
+        })(file);
+        reader.readAsDataURL(file);
+        console.log($preview)
+      });
+    });
+  </script>
+
+</div>

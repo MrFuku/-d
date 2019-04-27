@@ -1,3 +1,6 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get 'ads', to: 'page#ads'
+  get 'ad_new', to: 'page#ad_new'
+  post 'ad_create', to: 'page#ad_create'
+  root to: 'page#index'
 end

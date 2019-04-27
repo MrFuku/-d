@@ -1,0 +1,16 @@
+// Custom bootstrap variables must be set or imported *before* bootstrap.
+@import "bootstrap";
+
+/* 広告入稿画面 */
+#input-page {
+  .picture {
+    background: gray;
+    color: white;
+    text-align: center;
+    width: 300px;
+    height: 250px;
+    .discription {
+      padding-top: 90px;
+    }
+  }
+}

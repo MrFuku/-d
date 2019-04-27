@@ -1,0 +1,6 @@
+<h1>広告一覧</h1>
+
+<% @ads.each do |ad| %>
+  <%= ad.name %>
+  <%= image_tag ad.picture.url %>
+<% end %>
