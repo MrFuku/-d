@@ -2,5 +2,5 @@
 
 <% @ads.each do |ad| %>
   <%= ad.name %>
-  <%= image_tag ad.picture.url %>
+  <%= image_tag ad.picture.url if ad.picture? %>
 <% end %>
