@@ -25,6 +25,6 @@ production:
   encoding: utf8
   pool: 5
   username: root
-  password: ENV["MYSQL_PASSWORD"]
+  password: <%= ENV["MYSQL_PASSWORD"] %>
   host: localhost
   database: ad_system_production
