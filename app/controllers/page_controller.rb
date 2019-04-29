@@ -14,7 +14,7 @@ class PageController < ApplicationController
   def ad_create
     @ad = Ad.new(ad_params)
     if @ad.save
-      redirect_to root
+      redirect_to root_path
     else
       p @ad
       render :ad_new
