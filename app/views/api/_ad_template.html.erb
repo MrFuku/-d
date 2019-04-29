@@ -1,0 +1,38 @@
+<div id="ad_frame">
+  <span>広告配信サーバーからテスト配信中</span><span id="ad_close">×</span>
+  <%= image_tag img_url %>
+</div>
+
+<style>
+  #ad_frame {
+    /* position: fixed;
+    bottom: 10px;
+    left: 10px; */
+    width: 302px;
+    height: 276px;
+    border: 1px solid black;
+    background-color: #dff;
+    text-align: center;
+  }
+  #ad_frame img {
+    height: 250px;
+    width: 300px;
+  }
+  #ad_close {
+    float: right;
+    margin-right: 6px;
+    background-color: white;
+    border-radius: 50%;
+    width: 22px;
+    font-weight: bold;
+  }
+  #ad_close:hover {
+    cursor: pointer;
+  }
+</style>
+<script type="text/javascript">
+  document.getElementById("ad_close").onclick = function() {
+    document.getElementById('ad_frame').remove();
+    console.log(111)
+  };
+</script>
