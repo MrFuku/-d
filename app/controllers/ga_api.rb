@@ -2,12 +2,12 @@ require 'google/api_client'
 
 class GaApi
 
-    KEY_FILE = "#{Rails.root}/certificate/propane-folio-239209-a78653cfaada.p12"
-    ACCOUNT_EMAIL = "analytics-ad-acount@propane-folio-239209.iam.gserviceaccount.com"
-    KEY_SECRET = "notasecret"
-    VIEW_ID = "194376867"
-    VERSION = "v3"
-    CACHED_API_FILE = "#{Rails.root}/certificate/analytics-#{VERSION}.cache"
+    KEY_FILE = "#{Rails.root}" + ENV["GA_KEY_FILE"]
+    ACCOUNT_EMAIL = ENV["GA_ACCOUNT_EMAIL"]
+    KEY_SECRET = ENV["GA_KEY_SECRET"]
+    VIEW_ID = ENV["GA_VIEW_ID"]
+    VERSION = ENV["GA_VERSION"]
+    CACHED_API_FILE = "#{Rails.root}" + ENV["GA_CACHED_API_FILE"]
 
     def initialize
       @client = Google::APIClient.new(
