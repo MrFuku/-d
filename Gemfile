@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.5'
+ruby '2.4.1'
 gem 'rails', '~> 5.2.3'
 gem 'puma', '~> 3.11'
 gem 'sass-rails', '~> 5.0'
@@ -15,6 +15,8 @@ gem 'jquery-rails'
 gem 'carrierwave', '1.2.2'
 gem 'mini_magick', '4.7.0'
 gem 'dotenv-rails'
+gem 'google-api-client', '0.8'
+gem 'signet'
 
 group :development, :test do
   gem 'sqlite3'

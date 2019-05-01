@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   post 'ad_create', to: 'page#ad_create'
   get 'api', to: 'api#test'
   get 'ad_request', to: 'page#ad_request'
+  get 'analytics', to: 'api#analytics'
   root to: 'page#index'
 end
