@@ -1,6 +1,24 @@
 <h1>広告一覧</h1>
 
-<% @ads.each do |ad| %>
-  <%= ad.name %>
-  <%= image_tag ad.picture.url if ad.picture? %>
-<% end %>
+<div id="ad_sammary">
+  <table border="1">
+    <tr>
+      <th>クリエイティブ</th>
+      <th>広告名</th>
+      <th>入稿日</th>
+    </tr>
+    <% @ads.each do |ad| %>
+      <tr data-href="show/<%= ad.id %>">
+        <td><%= image_tag ad.picture.url, height: "100", width: "120" if ad.picture? %></td>
+        <td><%= ad.name %></td>
+        <td><%= ad.created_at.strftime("%Y-%m-%d") %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<script type="text/javascript">
+  $('tr:gt(0)').click(function(){
+    window.location = $(this).attr('data-href');
+  });
+</script>
