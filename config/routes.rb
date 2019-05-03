@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   get 'api', to: 'api#test'
   get 'ad_request', to: 'page#ad_request'
   get 'analytics', to: 'api#analytics'
+  get 'report', to: 'page#report'
   root to: 'page#index'
 end

@@ -10,6 +10,9 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require moment
+//= require moment/ja.js
+//= require Chart.min
 //= require jquery
 //= require rails-ujs
 //= require activestorage

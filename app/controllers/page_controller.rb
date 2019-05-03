@@ -20,6 +20,10 @@ class PageController < ApplicationController
     end
   end
 
+  def report
+    render :analytics_report
+  end
+
   def ad_request
     uri = URI.parse("http://18.182.76.60/api")
     response = Net::HTTP.start(uri.host, uri.port) do |http|
