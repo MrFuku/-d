@@ -1,13 +1,23 @@
-<h1>広告詳細画面</h1>
+<div id="ad_show">
+  <h1>広告詳細画面</h1>
+  <table border="1">
+    <tr>
+      <th>クリエイティブ</th>
+      <th>サイズ</th>
+      <th>広告名</th>
+      <th>入稿日</th>
+      <th></th>
+    </tr>
+    <tr>
+      <td><%= image_tag ad.picture.url, height: "200", width: "240" if ad.picture? %></td>
+      <td>300px × 250px</td>
+      <td><%= ad.name %></td>
+      <td><%= ad.created_at.strftime("%Y-%m-%d") %></td>
+      <td><%= link_to "削除", "/delete/#{ad.id}", data: { confirm: "本当に削除しますか？"} %></td>
+    </tr>
+  </table>
 
-<h2>広告名：<%= ad.name %></h2>
-<div class="">
-  <%= image_tag ad.picture.url, height: "250", width: "250" %>
-</div>
-
-<%= link_to "削除", "/delete/#{ad.id}", data: { confirm: "本当に削除しますか？"} %>
-<%= link_to "効果測定", "/report?id=#{ad.id}" %>
-
-<div class="">
-  <%= render "analytics_report", { ad: ad } %>
+  <div class="">
+    <%= render "analytics_report", { ad: ad } %>
+  </div>
 </div>
