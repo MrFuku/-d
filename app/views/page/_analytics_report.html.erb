@@ -1,5 +1,3 @@
-<h1>広告効果確認画面</h1>
-
 <select name="report_id">
   <option value="1">日別</option>
   <option value="2">月別</option>
@@ -68,9 +66,10 @@
     console.log(startTerm,endTerm)
     $.ajax({
       type: 'GET',
-      url: 'analytics',
+      url: '/analytics',
       data: { startTerm: startTerm, endTerm: endTerm, select_value: id, ad_id: ad_id },
       success: function(response){
+
         var dataList = []
         response.forEach( function (rpt) {
           var x, y;

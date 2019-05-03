@@ -1,6 +1,31 @@
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
 
+/* 広告一覧画面 */
+#ad_sammary {
+  img {
+    border: 1px solid #999;
+  }
+  table {
+    border-collapse: collapse;
+    text-align: center;
+  }
+  tr {
+    &:nth-child(n+2){ height: 110px; }
+    &:nth-child(even){ background: #eee; }
+    &:nth-child(n+2):hover {
+      background: #ccc;
+      cursor: pointer;
+    }
+  }
+  td {
+    word-wrap: break-word;
+    &:nth-child(1) { width: 200px; }
+    &:nth-child(2) { width: 200px; }
+    &:nth-child(3) { width: 200px; }
+  }
+}
+
 /* 広告入稿画面 */
 #input-page {
   .picture {

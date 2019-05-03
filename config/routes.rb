@@ -6,5 +6,7 @@ Rails.application.routes.draw do
   get 'ad_request', to: 'page#ad_request'
   get 'analytics', to: 'api#analytics'
   get 'report', to: 'page#report'
+  get 'show/:id', to: 'page#ad_show'
+  get 'delete/:id', to: 'page#ad_delete'
   root to: 'page#index'
 end

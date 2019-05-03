@@ -20,8 +20,32 @@ class PageController < ApplicationController
     end
   end
 
+  def ad_show
+    if ad = Ad.find_by(id: params[:id])
+      render "show", locals: { ad: ad }
+    else
+      redirect_to root_path
+    end
+  end
+
+  def ad_delete
+    if ad = Ad.find_by(id: params[:id])
+      if ad.destroy
+        redirect_to ads_path
+      else
+        redirect_to root_path
+      end
+    else
+      redirect_to root_path
+    end
+  end
+
   def report
-    render :analytics_report
+    if ad = Ad.find_by(id: params[:id])
+      render :analytics_report, locals: { ad: ad }
+    else
+      redirect_to root_path
+    end
   end
 
   def ad_request

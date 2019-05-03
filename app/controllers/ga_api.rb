@@ -56,7 +56,8 @@ class GaApi
           "start-date" => options[:start_date],
           "end-date" => options[:end_date],
           "metrics" => "ga:hits",
-          "dimensions" => options[:dimensions]
+          "dimensions" => options[:dimensions],
+          "filters" => options[:filters]
         }
       )
     end
