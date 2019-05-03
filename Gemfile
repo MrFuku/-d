@@ -17,6 +17,8 @@ gem 'mini_magick', '4.7.0'
 gem 'dotenv-rails'
 gem 'google-api-client', '0.8'
 gem 'signet'
+gem 'chart-js-rails', '~> 0.1.4'
+gem 'momentjs-rails'
 
 group :development, :test do
   gem 'sqlite3'

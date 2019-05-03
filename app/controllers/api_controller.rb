@@ -11,7 +11,21 @@ class ApiController < ApplicationController
   def analytics
     api = GaApi.new
     api.authorize!
-    analytics = api.get_data()
+    dimensions = "ga:date"
+    start_date = params["startTerm"]
+    end_date = params["endTerm"]
+
+    if params["select_value"]=="1"
+      dimensions += ",ga:hour"
+    elsif params["select_value"]=="2"
+      start_date += "-01"
+      end_date = Date.parse(start_date).end_of_month.strftime("%Y-%m-%d")
+      start_date = Date.parse(start_date).strftime("%Y-%m-%d")
+    else
+      difTime = (Date.parse(end_date) - Date.parse(start_date)).to_i
+      return if(difTime>60)
+    end
+    analytics = api.get_data( start_date: start_date, end_date: end_date, dimensions: dimensions)
     analytics  = JSON.parse(analytics.response.body)
     render json: analytics["rows"]
   end

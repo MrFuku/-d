@@ -1,0 +1,102 @@
+<h1>広告効果確認画面</h1>
+
+<select name="report_id">
+  <option value="1">日別</option>
+  <option value="2">月別</option>
+  <option value="3">期間指定</option>
+</select>
+
+<div class="term">
+  <%= render 'analytics_day' %>
+</div>
+<input type="button" value="送信" id="button">
+<div class="result"></div>
+
+<script>
+  var createChart = function(dataList){
+    $('.result').html('<canvas id="myChart" width="900" height="400"></canvas>');
+    var ctx = document.getElementById("myChart").getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            datasets: [{
+              label: 'インプレッション数',
+                data: dataList,
+                backgroundColor: 'rgba(255, 99, 132, 1.0)',
+                borderColor: 'rgba(255, 50, 132, 1.0)',
+                fill: false
+            }]
+        },
+        options: {
+          scales: {
+                yAxes: [{
+                    stacked: true,
+                    ticks: {
+                      suggestedMax: 15,
+                      suggestedMin: 0,
+                    }
+                }],
+                xAxes: [{
+                  stacked: true,
+                  type: 'time',
+                  time: {
+                    // unit: 'hour'
+                  }
+                }]
+            }
+        }
+    });
+  };
+
+
+</script>
+
+<script type="text/javascript">
+  $('#button').on('click', function(){
+    var id  = $('select').val()
+    var startTerm = $('#start-term').val()
+    var endTerm = $('#start-term').val()
+    if(id==3){
+      endTerm = $('#end-term').val();
+      var date1 = new Date(startTerm);
+	    var date2 = new Date(endTerm);
+      if(date2<date1){ return alert("終了日は開始日以降に設定してください。"); }
+      if(date2-date1>1000*60*60*24*60){ return alert("期間は６０日以内にしてください。"); }
+    }
+    console.log(startTerm,endTerm)
+    $.ajax({
+      type: 'GET',
+      url: 'analytics',
+      data: { startTerm: startTerm, endTerm: endTerm, select_value: id},
+      success: function(response){
+        var dataList = []
+        response.forEach( function (rpt) {
+          var x, y;
+          if(id==1){
+            x = moment(rpt[0] + rpt[1], "YYYYMMDDHH");
+            y = rpt[2];
+          }else if(id==2||id==3){
+            x = moment(rpt[0], "YYYYMMDD");
+            y = rpt[1];
+          }
+          dataList.push({ x: x, y: y})
+          console.log(x,y)
+        });
+        createChart(dataList);
+      },
+      error: function(){
+        console.log("エラー")
+      }
+    });
+  });
+  $('select').on('change', function(){
+    var id = $('select').val();
+    if(id==1){
+      $('.term').html("<%= escape_javascript(render 'analytics_day') %>");
+    }else if(id==2){
+      $('.term').html("<%= escape_javascript(render 'analytics_month') %>");
+    }else{
+      $('.term').html("<%= escape_javascript(render 'analytics_specified') %>");
+    }
+  });
+</script>

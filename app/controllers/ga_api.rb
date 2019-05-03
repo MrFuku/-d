@@ -53,13 +53,10 @@ class GaApi
         api_method: api.data.ga.get,
         parameters: {
           "ids" => "ga:#{VIEW_ID}",
-          # "start-date" => options[:start_date].to_s,
-          # "end-date" => options[:end_date].to_s,
-          # "metrics" => options[:metrics],
-          "start-date" => "2019-04-29",
-          "end-date" => "2019-04-30",
+          "start-date" => options[:start_date],
+          "end-date" => options[:end_date],
           "metrics" => "ga:hits",
-          "dimensions" => "ga:date"
+          "dimensions" => options[:dimensions]
         }
       )
     end
