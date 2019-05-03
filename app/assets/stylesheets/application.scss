@@ -3,9 +3,7 @@
 
 /* 広告一覧画面 */
 #ad_sammary {
-  img {
-    border: 1px solid #999;
-  }
+  img { border: 1px solid #999; }
   table {
     border-collapse: collapse;
     text-align: center;
@@ -23,6 +21,22 @@
     &:nth-child(1) { width: 200px; }
     &:nth-child(2) { width: 200px; }
     &:nth-child(3) { width: 200px; }
+  }
+}
+
+/* 広告詳細画面 */
+#ad_show {
+  img { border: 1px solid #999; }
+  table {
+    border-collapse: collapse;
+    text-align: center;
+  }
+  tr:nth-child(1){ background: #b4f1b4; }
+  tr:nth-child(2){ height: 220px; }
+  td {
+    word-wrap: break-word;
+    &:nth-child(1) { width: 270px; }
+    &:nth-child(n+2) { width: 150px; }
   }
 }
 
