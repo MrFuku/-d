@@ -1,7 +1,5 @@
-<h1>広告管理画面</h1>
-
-<ul>
-  <li><%= link_to "広告一覧", ads_path %></li>
-  <li><%= link_to "広告入稿", ad_new_path %></li>
-  <li><%= link_to "広告効果確認", report_path %></li>
-</ul>
+<div id="top_page">
+  <h1>広告管理画面</h1>
+  <%= link_to "広告一覧", ads_path, class: "top-button" %>
+  <%= link_to "広告入稿", ad_new_path, class: "top-button" %>
+</div>
