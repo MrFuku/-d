@@ -12,7 +12,7 @@
 <div class="result"></div>
 
 <script>
-  var createChart = function(dataList){
+  var createChart = function(impressionData, clickData){
     $('.result').html('<canvas id="myChart" width="900" height="400"></canvas>');
     var ctx = document.getElementById("myChart").getContext('2d');
     var myChart = new Chart(ctx, {
@@ -20,10 +20,16 @@
         data: {
             datasets: [{
               label: 'インプレッション数',
-                data: dataList,
-                backgroundColor: 'rgba(255, 99, 132, 1.0)',
-                borderColor: 'rgba(255, 50, 132, 1.0)',
-                fill: false
+              data: impressionData,
+              backgroundColor: 'rgba(255, 99, 132, 1.0)',
+              borderColor: 'rgba(255, 50, 132, 1.0)',
+              fill: false
+            },{
+              label: 'クリック数',
+              data: clickData,
+              backgroundColor: 'rgba(255, 99, 132, 1.0)',
+              borderColor: 'rgba(255, 153, 0, 1.0)',
+              fill: false
             }]
         },
         options: {
@@ -51,6 +57,22 @@
 </script>
 
 <script type="text/javascript">
+  var createList = function(array, id){
+    var dataList = []
+    array.forEach( function (rpt) {
+      var x, y;
+      if(id==1){
+        x = moment(rpt[0] + rpt[1], "YYYYMMDDHH");
+        y = rpt[2];
+      }else if(id==2||id==3){
+        x = moment(rpt[0], "YYYYMMDD");
+        y = rpt[1];
+      }
+      console.log(x,y)
+      dataList.push({ t: x, y: y})
+    });
+    return dataList
+  };
   $('#button').on('click', function(){
     var id  = $('select').val()
     var startTerm = $('#start-term').val()
@@ -69,21 +91,9 @@
       url: '/analytics',
       data: { startTerm: startTerm, endTerm: endTerm, select_value: id, ad_id: ad_id },
       success: function(response){
-
-        var dataList = []
-        response.forEach( function (rpt) {
-          var x, y;
-          if(id==1){
-            x = moment(rpt[0] + rpt[1], "YYYYMMDDHH");
-            y = rpt[2];
-          }else if(id==2||id==3){
-            x = moment(rpt[0], "YYYYMMDD");
-            y = rpt[1];
-          }
-          dataList.push({ x: x, y: y})
-          console.log(x,y)
-        });
-        createChart(dataList);
+        var impressionData = createList(response[0], id);
+        var clickData = createList(response[1], id);
+        createChart(impressionData, clickData);
       },
       error: function(){
         console.log("エラー")

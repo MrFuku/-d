@@ -2,4 +2,23 @@
   <h1>広告管理画面</h1>
   <%= link_to "広告一覧", ads_path, class: "top-button" %>
   <%= link_to "広告入稿", ad_new_path, class: "top-button" %>
+  <canvas class="background"></canvas>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.2/particles.min.js"></script>
 </div>
+
+<style media="screen">
+  @import url('https://fonts.googleapis.com/css?family=Merienda');
+
+/* Default Styling */
+body {
+  background: #000;
+}
+</style>
+<script type="text/javascript">
+  var particles = Particles.init({
+    selector: '.background',
+  sizeVariations: 10,
+  color: ['#00bbdd', '#404B69', '#DBEDF3'],
+  connectParticles: true
+});
+</script>
