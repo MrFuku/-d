@@ -1,13 +1,11 @@
-<div id="ad_frame">
+<div id="ad_frame" class="ripple" >
+  <span class="ripple__effect is-orange"></span>
   <span>広告配信サーバーからテスト配信中</span><span id="ad_close">×</span>
-  <%= image_tag img_url %>
+  <%= image_tag img_url, id: "ad_img" %>
 </div>
 
 <style>
   #ad_frame {
-    /* position: fixed;
-    bottom: 10px;
-    left: 10px; */
     width: 302px;
     height: 276px;
     border: 1px solid black;
@@ -29,11 +27,56 @@
   #ad_close:hover {
     cursor: pointer;
   }
+  .fadeout {
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    -ms-transition: all 1s;
+    -o-transition: all 1s;
+    transition: all 1s;
+    opacity: 0;
+  }
+  .sizuku {
+    animation: sizuku 1s linear 0s; /*1s はアニメーションにかかる時間*/
+    background-color: #6EB2E0; /*背景色*/
+    border-radius: 50%;
+    border: 4px solid #6EB2E0; /*ボーダーの幅と色*/
+    position: absolute;
+    z-index: 1000;
+  }
+  @keyframes sizuku {
+      0% {
+          height: 0;
+          opacity: 1;
+          transform: translate(0, 0);
+          width: 0;
+      }
+      100% {
+          height: 500px; /*円の高さ幅の最大値*/
+          opacity: 0;
+          transform: translate(-250px, -250px); /*高さの半分の値にする*/
+          width: 500px; /*基本高さと合わせる*/
+      }
+  }
 </style>
 <script type="text/javascript">
   document.getElementById("ad_close").onclick = function() {
     document.getElementById('ad_frame').remove();
-    console.log(111)
+  };
+
+  document.getElementById("ad_img").onclick = function(e) {
+    document.getElementById("ad_frame").insertAdjacentHTML('beforebegin','<img src="<%= click_tag %>">');
+    var x = e.pageX;
+    var y = e.pageY;
+    var sizuku = document.createElement("div");
+    sizuku.style.top = y + "px";
+    sizuku.style.left = x + "px";
+    document.body.appendChild(sizuku);
+    document.getElementById("ad_frame").classList.add("fadeout")
+    sizuku.className = "sizuku";
+    sizuku.addEventListener("animationend", function() {
+      this.parentNode.removeChild(this);
+      document.getElementById('ad_frame').remove();
+    }, false);
   };
 </script>
-<%= image_tag tag %>
+<img src="<%= impression_tag %>">
