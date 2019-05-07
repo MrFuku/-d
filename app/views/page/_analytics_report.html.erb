@@ -1,14 +1,17 @@
-<select name="report_id">
-  <option value="1">日別</option>
-  <option value="2">月別</option>
-  <option value="3">期間指定</option>
-</select>
+<div class="input">
+  <select name="report_id">
+    <option value="1">日別</option>
+    <option value="2">月別</option>
+    <option value="3">期間指定</option>
+  </select>
 
-<div class="term">
-  <%= render 'analytics_day' %>
+  <div class="term">
+    <%= render 'analytics_day' %>
+  </div>
+  <input type="hidden" id="ad_id" value="<%= ad.id %>">
+  <input type="button" value="送信" id="button">
 </div>
-<input type="hidden" id="ad_id" value="<%= ad.id %>">
-<input type="button" value="送信" id="button">
+
 <div class="result"></div>
 
 <script>
@@ -35,18 +38,13 @@
         options: {
           scales: {
                 yAxes: [{
-                    stacked: true,
                     ticks: {
                       suggestedMax: 15,
                       suggestedMin: 0,
                     }
                 }],
                 xAxes: [{
-                  stacked: true,
-                  type: 'time',
-                  time: {
-                    // unit: 'hour'
-                  }
+                  type: 'time'
                 }]
             }
         }

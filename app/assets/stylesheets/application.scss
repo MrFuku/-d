@@ -22,6 +22,7 @@ nav {
 /* トップ画面 */
 #top_page {
   text-align: center;
+  h1 { margin: 110px; }
   .top-button {
     display: inline-block;
     font: normal normal 300 1.3em 'Open Sans';
@@ -76,6 +77,9 @@ nav {
 
 /* 広告詳細画面 */
 #ad_show {
+  margin: auto;
+  max-width: 873px;
+  h1 { text-align: center; }
   img { border: 1px solid #999; }
   table {
     border-collapse: collapse;
