@@ -1,24 +1,36 @@
-# README
+# ネットでオセロ
+[サイトURL](http://18.182.76.60/)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 制作期間
+- 一週間
 
-Things you may want to cover:
+## アプリ概要
+- リクエストに応じて広告を配信
+- 広告の入稿
+- 広告のインプレッション数とクリック数をチャートで表示
 
-* Ruby version
+## 主な機能
+- 広告配信
+  - ランダムに広告を配信
+- 広告入稿
+  - 画像ファイルアップロード（S3）
+- 広告効果確認
+  - Google Analyticsとの連携
+  - インプレッション数の確認
+  - クリック数の確認
+  - 日別、月別、任意の期間指定
 
-* System dependencies
+## 使用した技術
+- 画像アップロード
+  - S3
+- デプロイ
+  - EC2
+- DB
+  - MySQL
+- インプレッション数等の集計
+  - Google Analytics
+  - Chart.js
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## バージョン
+- Ruby 2.4.1
+- Rails 5.2.3
